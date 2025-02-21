@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">Department Dashboard</h1>
+<a href="{% url 'department_add' %}" class="btn btn-primary mb-3">Add Department</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>Dept. Name</th>
+            <th>Dept. Description</th>
+            <th>Activity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for department in departments %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ department.name }}</td>
+            <td>{{ department.description }}</td>
+            <td>
+                <a href="{% url 'department_view' department.pk %}" class="btn btn-sm btn-info">View</a>
+                <a href="{% url 'department_edit' department.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'department_delete' department.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
